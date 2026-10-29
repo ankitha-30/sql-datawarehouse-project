@@ -10,3 +10,29 @@ Warning:
   All data in the database will be permanently deleted. Proceed with caution and ensure you have proper backups before running the script.
  */
 
+USE master;
+GO
+
+---Drop and recreate the 'DataWarehouse' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name='DataWahrehouse')
+BEGIN 
+  ALTER DATABASE DaraWarehouse SET SINGLE USER WITH ROLLBACK IMMEDIATE;
+END;
+GO
+-- Create the 'DataWarehouse' database
+CREATE DATABASE DataWarehouse;
+GO
+
+USE DataWarehouse;
+GO
+
+-- Create Schemas
+CREATE SCHEMA bronze;
+GO
+
+CREATE SCHEMA silver;
+GO
+
+CREATE SCHEMA gold;
+GO
+
